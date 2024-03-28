@@ -20,19 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="3 线性模型谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y&#x3D;ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当">
+  <meta name="description" content="3 线性模型 谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y&#x3D;ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当预测值为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="test">
 <meta property="og:url" content="http://example.com/2024/03/28/test/index.html">
 <meta property="og:site_name" content="XYZ">
-<meta property="og:description" content="3 线性模型谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y&#x3D;ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当">
+<meta property="og:description" content="3 线性模型 谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y&#x3D;ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当预测值为">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2024/03/28/test/test.png">
-<meta property="og:image" content="http://example.com/media/Chapter3_%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/5bc722b068e48.png">
 <meta property="og:image" content="http://example.com/2024/03/28/test/test.png">
-<meta property="og:image" content="http://example.com/media/test.png">
 <meta property="article:published_time" content="2024-03-28T10:31:16.000Z">
-<meta property="article:modified_time" content="2024-03-28T10:59:12.000Z">
+<meta property="article:modified_time" content="2024-03-28T14:04:52.449Z">
 <meta property="article:author" content="SichaoY">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2024/03/28/test/test.png">
@@ -179,7 +177,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-03-28 18:31:16 / Modified: 18:59:12" itemprop="dateCreated datePublished" datetime="2024-03-28T18:31:16+08:00">2024-03-28</time>
+              <time title="Created: 2024-03-28 18:31:16 / Modified: 22:04:52" itemprop="dateCreated datePublished" datetime="2024-03-28T18:31:16+08:00">2024-03-28</time>
             </span>
 
           
@@ -194,21 +192,54 @@
 
       
         <img src="/2024/03/28/test/test.png" class="">
-
-
-<h1 id="3-线性模型"><a href="#3-线性模型" class="headerlink" title="3 线性模型"></a>3 线性模型</h1><p>谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y&#x3D;ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当预测值为连续值时，称为“回归问题”，离散值时为“分类问题”。本篇先从线性回归任务开始，接着讨论分类和多分类问题。</p>
-<p><img src="/media/Chapter3_%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/5bc722b068e48.png" alt="1.png"></p>
-<p><img src="/2024/03/28/test/test.png"></p>
-<p><img src="/media/test.png" alt="3.png"></p>
-<h2 id="3-1-线性回归"><a href="#3-1-线性回归" class="headerlink" title="3.1 线性回归"></a><strong>3.1 线性回归</strong></h2><p>线性回归问题就是试图学到一个线性模型尽可能准确地预测新样本的输出值，例如：通过历年的人口数据预测2017年人口数量。在这类问题中，往往我们会先得到一系列的有标记数据，例如：2000–&gt;13亿…2016–&gt;15亿，这时输入的属性只有一个，即年份；也有输入多属性的情形，假设我们预测一个人的收入，这时输入的属性值就不止一个了，例如：（学历，年龄，性别，颜值，身高，体重）–&gt;15k。</p>
+<h1 id="线性模型">3 线性模型</h1>
+<p>谈及线性模型，其实我们很早就已经与它打过交道，还记得高中数学必修3课本中那个顽皮的“最小二乘法”吗？这就是线性模型的经典算法之一：根据给定的（x，y）点对，求出一条与这些点拟合效果最好的直线y=ax+b，之前我们利用下面的公式便可以计算出拟合直线的系数a,b（3.1中给出了具体的计算过程），从而对于一个新的x，可以预测它所对应的y值。前面我们提到：在机器学习的术语中，当预测值为连续值时，称为“回归问题”，离散值时为“分类问题”。本篇先从线性回归任务开始，接着讨论分类和多分类问题。</p>
+<p><img src="test.png" /></p>
+<h2 id="线性回归"><strong>3.1 线性回归</strong></h2>
+<p>线性回归问题就是试图学到一个线性模型尽可能准确地预测新样本的输出值，例如：通过历年的人口数据预测2017年人口数量。在这类问题中，往往我们会先得到一系列的有标记数据，例如：2000--&gt;13亿...2016--&gt;15亿，这时输入的属性只有一个，即年份；也有输入多属性的情形，假设我们预测一个人的收入，这时输入的属性值就不止一个了，例如：（学历，年龄，性别，颜值，身高，体重）--&gt;15k。</p>
 <p>有时这些输入的属性值并不能直接被我们的学习模型所用，需要进行相应的处理，对于连续值的属性，一般都可以被学习器所用，有时会根据具体的情形作相应的预处理，例如：归一化等；对于离散值的属性，可作下面的处理：</p>
 <ul>
-<li><p>若属性值之间存在“序关系”，则可以将其转化为连续值，例如：身高属性分为“高”“中等”“矮”，可转化为数值：{1， 0.5， 0}。</p>
-</li>
-<li><p>若属性值之间不存在“序关系”，则通常将其转化为向量的形式，例如：性别属性分为“男”“女”，可转化为二维向量：{（1，0），（0，1）}。</p>
-</li>
+<li><p>若属性值之间存在“序关系”，则可以将其转化为连续值，例如：身高属性分为“高”“中等”“矮”，可转化为数值：{1，
+0.5， 0}。</p></li>
+<li><p>若属性值之间不存在“序关系”，则通常将其转化为向量的形式，例如：性别属性分为“男”“女”，可转化为二维向量：{（1，0），（0，1）}。</p></li>
 </ul>
-<h4 id="eq-3-5"><a href="#eq-3-5" class="headerlink" title="eq. 3.5"></a>eq. 3.5</h4><p>$$<br>\cfrac{\partial E_{(w, b)}}{\partial w}&#x3D;2\left(w \sum_{i&#x3D;1}^{m} x_{i}^{2}-\sum_{i&#x3D;1}^{m}\left(y_{i}-b\right) x_{i}\right)<br>$$<br>[推导]：已知$E_{(w, b)}&#x3D;\sum\limits_{i&#x3D;1}^{m}\left(y_{i}-w x_{i}-b\right)^{2}$，所以<br>$$<br>\begin{aligned}<br>\cfrac{\partial E_{(w, b)}}{\partial w}&amp;&#x3D;\cfrac{\partial}{\partial w} \left[\sum_{i&#x3D;1}^{m}\left(y_{i}-w x_{i}-b\right)^{2}\right] \<br>&amp;&#x3D; \sum_{i&#x3D;1}^{m}\cfrac{\partial}{\partial w} \left[\left(y_{i}-w x_{i}-b\right)^{2}\right] \<br>&amp;&#x3D; \sum_{i&#x3D;1}^{m}\left[2\cdot\left(y_{i}-w x_{i}-b\right)\cdot (-x_i)\right] \<br>&amp;&#x3D; \sum_{i&#x3D;1}^{m}\left[2\cdot\left(w x_{i}^2-y_i x_i +bx_i\right)\right] \<br>&amp;&#x3D; 2\cdot\left(w\sum_{i&#x3D;1}^{m} x_{i}^2-\sum_{i&#x3D;1}^{m}y_i x_i +b\sum_{i&#x3D;1}^{m}x_i\right) \<br>&amp;&#x3D;2\left(w \sum_{i&#x3D;1}^{m} x_{i}^{2}-\sum_{i&#x3D;1}^{m}\left(y_{i}-b\right) x_{i}\right)<br>\end{aligned}<br>$$</p>
+<p><span class="math display">\[\begin{equation}\label{eq1}
+e=mc^2
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}\label{eq2}
+\begin{aligned}
+a &amp;= b + c \\
+  &amp;= d + e + f + g \\
+  &amp;= h + i
+\end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{align}
+a &amp;= b + c \label{eq3} \\
+x &amp;= yz \label{eq4}\\
+l &amp;= m - n \label{eq5}
+\end{align}\]</span></p>
+<h4 id="eq.-3.5">eq. 3.5</h4>
+<p><span class="math display">\[
+\cfrac{\partial E_{(w, b)}}{\partial w}=2\left(w \sum_{i=1}^{m}
+x_{i}^{2}-\sum_{i=1}^{m}\left(y_{i}-b\right) x_{i}\right)
+\]</span> [推导]：已知<span class="math inline">\(E_{(w,
+b)}=\sum\limits_{i=1}^{m}\left(y_{i}-w x_{i}-b\right)^{2}\)</span>，所以
+<span class="math display">\[
+\begin{aligned}
+\cfrac{\partial E_{(w, b)}}{\partial w}&amp;=\cfrac{\partial}{\partial
+w} \left[\sum_{i=1}^{m}\left(y_{i}-w x_{i}-b\right)^{2}\right] \\
+&amp;= \sum_{i=1}^{m}\cfrac{\partial}{\partial w} \left[\left(y_{i}-w
+x_{i}-b\right)^{2}\right] \\
+&amp;= \sum_{i=1}^{m}\left[2\cdot\left(y_{i}-w x_{i}-b\right)\cdot
+(-x_i)\right] \\
+&amp;= \sum_{i=1}^{m}\left[2\cdot\left(w x_{i}^2-y_i x_i
++bx_i\right)\right] \\
+&amp;= 2\cdot\left(w\sum_{i=1}^{m} x_{i}^2-\sum_{i=1}^{m}y_i x_i
++b\sum_{i=1}^{m}x_i\right) \\
+&amp;=2\left(w \sum_{i=1}^{m}
+x_{i}^{2}-\sum_{i=1}^{m}\left(y_{i}-b\right) x_{i}\right)
+\end{aligned}
+\]</span></p>
 
     </div>
 
@@ -286,7 +317,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">3 线性模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eq-3-5"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">eq. 3.5</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">3 线性模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eq.-3.5"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">eq. 3.5</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -385,6 +416,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
