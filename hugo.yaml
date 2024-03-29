@@ -2,3 +2,19 @@ baseURL: https://sichao-yang.github.io/
 languageCode: en-us
 title: My New Hugo Site
 theme: PaperMod
+
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
