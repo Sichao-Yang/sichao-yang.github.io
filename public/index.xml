@@ -9,23 +9,17 @@
     <lastBuildDate>Fri, 29 Mar 2024 14:07:35 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Single</title>
+      <title>Hello Hugo</title>
       <link>http://localhost:1313/posts/single/</link>
       <pubDate>Fri, 29 Mar 2024 14:07:35 +0800</pubDate>
       <guid>http://localhost:1313/posts/single/</guid>
-      <description>Intro my image: otherone:
-{{ $image := .Resources.Get &amp;ldquo;anyname/1.png&amp;rdquo; }}
-Steve abcmath \[ \begin{aligned} KL(\hat{y} || y) &amp;= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \\ JS(\hat{y} || y) &amp;= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2})) \end{aligned} \] This is an inline \(a^*=x-b^*\) equation.
-These are block equations:
-\[a^*=x-b^*\] \[ a^*=x-b^* \] \[ a^*=x-b^* \] These are block equations using alternate delimiters:
-$$a^*=x-b^*$$ $$ a^*=x-b^* $$ $$ a^*=x-b^* $$ </description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/posts/test/</link>
-      <pubDate>Fri, 29 Mar 2024 12:06:08 +0800</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
-      <description>title hi</description>
+      <description>This is a title This is a cute shibaInu image: This is a second title another resized one:
+Steveanother centered one:
+this is a subtitle math This is a math block:
+$$ \begin{aligned} KL(\hat{y} || y) &amp;= \sum_{c=1}^{M}\hat{y}_c \log{\frac{\hat{y}_c}{y_c}} \\ JS(\hat{y} || y) &amp;= \frac{1}{2}(KL(y||\frac{y+\hat{y}}{2}) + KL(\hat{y}||\frac{y+\hat{y}}{2})) \end{aligned} $$ This is an inline \(a^*=x-b^*\) equation.
+This is another one with math symbols: $\phi = \pi$.
+More block equations:
+\[a^*=x-b^* \] </description>
     </item>
   </channel>
 </rss>

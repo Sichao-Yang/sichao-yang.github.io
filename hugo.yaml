@@ -6,6 +6,10 @@ theme: PaperMod
 
 markup:
   goldmark:
+    parser:
+      attribute:
+        block: true
+      wrapStandAloneImageWithinParagraph: false
     extensions:
       passthrough:
         delimiters:
@@ -17,4 +21,6 @@ markup:
           inline:
           - - \(
             - \)
+          - - $
+            - $
         enable: true
